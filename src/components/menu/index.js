@@ -19,11 +19,12 @@ function Menu() {
             <li className="nav-item active">
               <Link className="nav-link" to={`/home`}>Manutenção</Link>
             </li>
+
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Equipamentos
               </a>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
                 <Link className="dropdown-item" to={'/computador'}>Computadores</Link>
                 <Link className="dropdown-item" to={'#'}>Notebooks</Link>
                 <Link className="dropdown-item" to={'#'}>Monitores</Link>
@@ -32,9 +33,21 @@ function Menu() {
                 <Link className="dropdown-item" to={'#'}>Tablets</Link>
               </div>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Novo</a>
+
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Cadastrar
+              </a>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                <Link className="dropdown-item" to={'/novo-computador'}>Computadores</Link>
+                <Link className="dropdown-item" to={'#'}>Notebooks</Link>
+                <Link className="dropdown-item" to={'#'}>Monitores</Link>
+                <Link className="dropdown-item" to={'#'}>Estabilizadores</Link>
+                <Link className="dropdown-item" to={'#'}>Smartphones</Link>
+                <Link className="dropdown-item" to={'#'}>Tablets</Link>
+              </div>
             </li>
+            
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Opções

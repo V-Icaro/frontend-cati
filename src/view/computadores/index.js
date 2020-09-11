@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import { useSelector, useDispatch} from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Menu from '../../components/menu';
 import api from '../../api'
 import './computadores.css';
@@ -32,7 +32,7 @@ function Computadores() {
     let listaItens = [];
 
     const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(5);
+    const [limit, setLimit] = useState(10);
 
     const [msg, setMsg] = useState('')
 
@@ -84,7 +84,7 @@ function Computadores() {
             id_equipamento : id,
             tipo: 'computador',
             aberto: 1,
-            status: 'Aberto',
+            status: 'Manutenção',
             defeito: defeito,
             detalhes: detalhes,
             chamado: chamado,
@@ -163,8 +163,7 @@ function Computadores() {
             <div className="col-md-m mr-auto ml-3">
                 <h1>COMPUTADORES</h1>
                 <select class="custom-select" onChange={(e) => setLimit(e.target.value)}>
-                    <option value="5" selected disabled>Quantidade de Resultados...</option>
-                    <option value="5">5</option>
+                    <option value="10" selected disabled>Quantidade de Resultados...</option>
                     <option value="10">10</option>
                     <option value="20">20</option>
                     <option value="20">50</option>
@@ -204,7 +203,8 @@ function Computadores() {
                 <td>{item.unidade}</td>
                 <td>{item.localizacao}</td>
                 <td><button onClick={() => buscarDados(item.id)} type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Editar</button></td>
-                <td><button onClick={() => setId(item.id)} type="button" className="btn btn-success" data-toggle="modal" data-target="#exampleModal2">Manutenção</button></td>
+                <td>{item.status === "Manutencao" ? <button disabled type="button" className="btn btn-danger">Em Manutenção</button>
+                : <button onClick={() => setId(item.id)} type="button" className="btn btn-success" data-toggle="modal" data-target="#exampleModal2">Manutenção</button>} </td>
               </tr>
             )
     

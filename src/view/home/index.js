@@ -25,7 +25,7 @@ function Home() {
     let listaItens = [];
 
     const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(5);
+    const [limit, setLimit] = useState(10);
 
     const [msg, setMsg] = useState('')
 
@@ -154,10 +154,9 @@ function Home() {
 
         <div className="row p-2">
             <div className="col-md-m mr-auto ml-3">
-            <h1>CATI - {item.length}</h1>
+            <h1>CATI</h1>
                 <select class="custom-select" onChange={(e) => setLimit(e.target.value)}>
-                    <option value="5" selected disabled>Quantidade de Resultados...</option>
-                    <option value="5">5</option>
+                    <option value="10" selected disabled>Quantidade de Resultados...</option>
                     <option value="10">10</option>
                     <option value="20">20</option>
                     <option value="20">50</option>
@@ -185,7 +184,7 @@ function Home() {
             <tbody>
             {item.map(item =>
             <tr key={item.id} >
-                <th scope="row">{item.chamado}</th>
+                <td>{item.chamado}</td>
                 <td>{item.tipo}</td>
                 <td>{item.status}</td>
                 <td>{item.responsavel}</td>

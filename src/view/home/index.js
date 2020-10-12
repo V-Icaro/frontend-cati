@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { useSelector, useDispatch} from 'react-redux';
+import { useSelector } from 'react-redux';
 import Menu from '../../components/menu';
 import api from '../../api'
 import './home.css';
@@ -8,27 +8,14 @@ import moment from 'moment';
 
 function Home() {
 
-    //dados para buscar computador e atualizar computador
-    const [id, setId] = useState('')
-    const [patrimonio, setPatrimonio] = useState('')
-    const [marca, setMarca] = useState('')
-    const [modelo, setModelo] = useState('')
-    const [numero_serie, setNS] = useState('')
-    const [status, setStatus] = useState('')
-    const [unidade, setUnidade] = useState('')
-    const [localizacao, setLocalizacao] = useState('')
-
-
     const [item, setItem] = useState([]);
-    const [itemPesquisa, setItemPesquisa] = useState([]);
     const [pesquisa, setPesquisa] = useState('');
     let listaItens = [];
 
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(10);
 
-    const [msg, setMsg] = useState('')
-
+    //tem que ajeitar isso//
     function pesquisar(pesquisa){
         api.get(`/computadores-todos`)
             .then(async (response) => {
@@ -70,62 +57,6 @@ function Home() {
             setItem(listaItens)
         })
     }
-    
-
-    /*function criarManutencao(id) {
-        const dados = {
-            id_equipamento : id,
-            tipo: 'computador',
-            aberto: 1,
-            status: 'Aberto',
-            defeito: defeito,
-            detalhes: detalhes,
-            chamado: chamado,
-            responsavel: usuario,
-            data_inicio: new Date().toISOString()
-        }
-        try{
-            api.post(`/manutencoes-novo`, dados)
-            .then(response => {
-                loadData()
-                setMsg('sucesso')
-            })
-        }catch(err){
-            alert(err)
-        }
-    }*/
-
-
-    function buscarDados(id){
-        try {
-            api.post(`/computadores-id/${id}`)
-            .then(response => {
-                setId(response.data.id)
-                setPatrimonio(response.data.patrimonio)
-                setMarca(response.data.marca)
-                setModelo(response.data.modelo)
-                setNS(response.data.numero_serie)
-                setStatus(response.data.status)
-                setUnidade(response.data.unidade)
-                setLocalizacao(response.data.localizacao)
-            })
-        } catch(err){
-            alert(err)
-        }
-    }
-
-    function atualizar(id){
-        const dados = {patrimonio, marca, modelo, numero_serie, status, unidade, localizacao}
-        try{
-            api.post(`/computadores-update/${id}`, dados)
-            .then(async (response) => {
-                loadData()
-                setMsg('sucesso')
-            })
-        }catch(err) {
-            alert('erro ao atualizar')
-        }
-    }
 
     function nextPage() {
         setPage(page + 1)
@@ -139,7 +70,6 @@ function Home() {
     
     useEffect(() => {
         try {
-            console.log(moment())
             loadData()
         } catch(err) {
             alert(err)
@@ -169,8 +99,9 @@ function Home() {
                 <button onClick={() => pesquisar(pesquisa)} type="button" className="btn btn-outline-success my-2 my-sm-0 mr-5">Pesquisar</button>
             </form>
         </div>
-            <table className="table table-chamados table-striped table-dark table-bordered table-responsive-md font-weight-bold mr-0">
-            <thead>
+        <div className="col-md-12 mx-auto">
+            <table className="table table-striped table-hover table-bordered table-responsive-md font-weight-bold mt-3">
+            <thead className="thead-dark">
                 <tr>
                 <th scope="col">Chamado</th>
                 <th scope="col">Tipo</th>
@@ -194,7 +125,7 @@ function Home() {
             </tr>)}
             </tbody>
         </table>
-
+        </div>        
         <div class="row font-weight-bold">
             <div class="col-md-2 mx-auto">
                 <nav aria-label="Page navigation example">
@@ -208,87 +139,7 @@ function Home() {
         </div>
         {
             useSelector(state => state.usuarioLogado) === 0 && <Redirect to="/" />
-        }
-        <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div className="modal-dialog">
-                  <div className="modal-content">
-                  <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">Atualizar Dados - Id : {id}</h5>
-                      <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div className="modal-body">
-                      <div className="row">
-                          <div className="col-md-6">
-                              Patrimonio:
-                              <input 
-                                  name="patrimonio"
-                                  placeholder="patrimonio"
-                                  value={patrimonio && patrimonio}
-                                  onChange={(e) => setPatrimonio(e.target.value)}
-                              />
-                          </div>
-                          <div className="col-md-6">
-                              Marca:
-                              <input 
-                                  name="marca"
-                                  placeholder="Marca"
-                                  value={marca && marca}
-                                  onChange={(e) => setMarca(e.target.value)}
-                              />
-                          </div>
-                      </div>
-                      <div className="row">
-                          <div className="col-md-6">
-                              Modelo:
-                              <input 
-                                  name="modelo"
-                                  placeholder="Modelo"
-                                  value={modelo && modelo}
-                                  onChange={(e) => setModelo(e.target.value)}
-                              />
-                          </div>
-                          <div className="col-md-6">
-                              Numero de Série:
-                              <input 
-                                  name="NS"
-                                  placeholder="Numero de Série"
-                                  value={numero_serie && numero_serie}
-                                  onChange={(e) => setNS(e.target.value)}
-                              />
-                          </div>
-                      </div>
-                      <div className="row">
-                          <div className="col-md-6">
-                              Unidade:
-                              <input 
-                                  name="unidade"
-                                  placeholder="Unidade"
-                                  value={unidade && unidade}
-                                  onChange={(e) => setUnidade(e.target.value)}
-                              />
-                          </div>
-                          <div className="col-md-6">
-                              Localizacao:
-                              <input 
-                                  name="localizacao"
-                                  placeholder="Localizacao"
-                                  value={localizacao && localizacao}
-                                  onChange={(e) => setLocalizacao(e.target.value)}
-                              />
-                          </div>
-                      </div>
-                      {msg === 'sucesso' && <p>Atualizado com sucesso</p>}
-                  </div>
-                  <div className="modal-footer">
-                      <button type="button" className="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                      <button type="button" className="btn btn-primary" onClick={() => atualizar(id)}>Editar</button>
-                  </div>
-                  </div>
-              </div>
-              </div>
-    
+        } 
         </>
     )
 }

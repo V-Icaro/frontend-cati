@@ -9,8 +9,8 @@ function Menu() {
     const dispatch = useDispatch();
 
     return(
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="#">Navbar</a>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a className="navbar-brand" href="#">Sistema - CATI</a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -20,11 +20,11 @@ function Menu() {
               <Link className="nav-link" to={`/home`}>Manutenção</Link>
             </li>
 
-            <li className="nav-item dropdown">
+            <li className="nav-item active dropdown">
               <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Equipamentos
               </a>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+              <div className="dropdown-menu font-text-white" aria-labelledby="navbarDropdownMenuLink1">
                 <Link className="dropdown-item" to={'/computador'}>Computadores</Link>
                 <Link className="dropdown-item" to={'#'}>Notebooks</Link>
                 <Link className="dropdown-item" to={'#'}>Monitores</Link>
@@ -34,7 +34,7 @@ function Menu() {
               </div>
             </li>
 
-            <li className="nav-item dropdown">
+            <li className="nav-item active dropdown">
               <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Cadastrar
               </a>
@@ -48,7 +48,7 @@ function Menu() {
               </div>
             </li>
             
-            <li className="nav-item dropdown">
+            <li className="nav-item active dropdown">
               <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Opções
               </a>

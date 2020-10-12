@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Box, Typography, Container } from '@material-ui/core'
+import { Avatar, Button, CssBaseline, TextField, Link, Box, Typography, Container } from '@material-ui/core'
 
 function Copyright() {
     return (
@@ -63,7 +63,6 @@ function Login() {
     async function onSubmit(data) {
         try {
             const response = await api.post('logon', { data })
-
             setMsg('sucesso')
             setTimeout(() => {
                 dispatch({ type: 'LOG_IN', usuarioNome: response.data.nome, usuarioId: response.data.id, usuarioControle: response.data.controle });

@@ -23,7 +23,7 @@ function Computadores() {
     const [detalhes, setDetalhes] = useState()
     const usuario = useSelector(state => state.usuarioNome)
     const data = Date()
-    console.log(data)
+    
 
 
     const [item, setItem] = useState([]);
@@ -39,7 +39,6 @@ function Computadores() {
     function pesquisar(pesquisa){
         api.get(`/computadores-todos`)
             .then(async (response) => {
-                console.log(response.data.length)
                 await response.data.forEach(doc => {
                     if(doc.patrimonio.indexOf(pesquisa) >= 0)
                         {
@@ -179,8 +178,9 @@ function Computadores() {
                 <button onClick={() => pesquisar(pesquisa)} type="button" className="btn btn-outline-success my-2 my-sm-0 mr-5">Pesquisar</button>
             </form>
         </div>
-            <table className="table table-bordered table-active font-weight-bold mr-0">
-            <thead>
+        <div className="col-md-12 mx-auto">
+            <table className="table table-bordered table-striped table-active table-hover font-weight-bold">
+            <thead className="thead-dark">
                 <tr>
                 <th scope="col">Patrimônio</th>
                 <th scope="col">Marca</th>
@@ -188,7 +188,7 @@ function Computadores() {
                 <th scope="col">Numero Série</th>
                 <th scope="col">Status</th>
                 <th scope="col">Unidade</th>
-                <th scope="col">Localização</th>
+                <th scope="col">Setor</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Manutenção</th>
                 </tr>
@@ -214,6 +214,7 @@ function Computadores() {
         }
             </tbody>
         </table>
+        </div>
 
         <div class="row font-weight-bold">
             <div class="col-md-2 mx-auto">
@@ -342,8 +343,6 @@ function Computadores() {
                       <div class="mb-3">
                         <label>Detalhes</label>
                         <textarea class="form-control" placeholder="Detalhes do Chamado" onChange={(e) => setDetalhes(e.target.value)} required></textarea>
-                        
-                        {console.log(detalhes)}
                       </div>
                       {msg === 'sucesso' && <p>Atualizado com sucesso</p>}
                   </div>

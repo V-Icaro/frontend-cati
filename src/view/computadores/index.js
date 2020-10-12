@@ -129,6 +129,9 @@ function Computadores() {
             .then(async (response) => {
                 loadData()
                 setMsg('sucesso')
+            }).catch((error) => {
+                alert(error.response.data)
+                setMsg('erro')
             })
         }catch(err) {
             alert('erro ao atualizar')

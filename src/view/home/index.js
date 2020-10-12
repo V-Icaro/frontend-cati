@@ -190,7 +190,7 @@ function Home() {
                 <td>{item.responsavel}</td>
                 <td>{item.defeito}</td>
                 <td>{moment(item.data_inicio).format('L')}</td>
-                <td><button onClick={() => setId(item.id)} type="button" className="btn btn-success" data-toggle="modal" data-target="#exampleModal2">+ Detalhes</button></td>
+                <td><Link type="button" className="btn btn-success" to={'/detalhes-computador'}>+ Detalhes</Link></td>
             </tr>)}
             </tbody>
         </table>

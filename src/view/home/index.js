@@ -7,7 +7,7 @@ import './home.css';
 import moment from 'moment';
 
 function Home() {
-
+    moment.locale('pt-BR')
     const [item, setItem] = useState([]);
     const [pesquisa, setPesquisa] = useState('');
     let listaItens = [];
@@ -120,7 +120,7 @@ function Home() {
                 <td>{item.status}</td>
                 <td>{item.responsavel}</td>
                 <td>{item.defeito}</td>
-                <td>{moment(item.data_inicio).format('L')}</td>
+                <td>{moment(item.data_inicio).format('DD/MM/YYYY')}</td>
                 <td><Link type="button" className="btn btn-success" to={'/detalhes-computador'}>+ Detalhes</Link></td>
             </tr>)}
             </tbody>
